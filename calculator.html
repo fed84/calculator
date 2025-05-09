@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body {
+        background-color: rgb(58, 71, 99);
+        font-family: Arial;
+        margin: 20px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        height: 100vh;
+      }
+
+      .buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        row-gap: 10px;
+        width: 350px;
+        margin-bottom: 5px;
+        border-style: solid;
+        padding-left: 20px;
+        padding-top: 20px;
+        background-color: rgb(23, 31, 51);
+        color: white;
+        border-radius: 10px;
+        padding-bottom: 20px;
+        border: none;
+      }
+      .screen {
+        border-style: solid;
+        width: 352px;
+        margin-bottom: 20px;
+        text-align: right;
+        padding: 25px 10px;
+        background-color: rgb(23, 31, 51);
+        color: white;
+        border-radius: 10px;
+        border: none;
+        font-size: 30px;
+        font-weight: bold;
+      }
+      button {
+        padding: 8px 30px;
+        border-radius: 6px;
+        background-color: rgb(235, 228, 221);
+        color: rgb(71, 77, 92);
+        font-weight: bold;
+        font-size: 15px;
+        width: 68.35px;
+        border-bottom: 3px;
+        border-top: 0px;
+        border-right: 0px;
+        border-left: 0px;
+        border-bottom-style: solid;
+        border-bottom-color: rgb(186, 172, 158);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+        transition: margin 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+      }
+      button:active {
+        box-shadow: 0 0 0;
+        margin-top: 2px;
+        margin-left: 2px;
+      }
+      .last-2-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 352px;
+        border: none;
+        padding-left: 18px;
+        background-color: rgb(23, 31, 51);
+        margin-top: -16px;
+        padding-bottom: 20px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+      .del-button {
+        width: 71px;
+        padding: 0 0;
+        height: 35px;
+        background-color: rgb(99, 112, 150);
+        color: white;
+        font-weight: bold;
+        border-bottom-color: rgb(60, 73, 107);
+      }
+      .reset-button {
+        background-color: rgb(99, 112, 150);
+        color: white;
+        font-weight: bold;
+        width: 159px;
+        border-bottom-color: rgb(60, 73, 107);
+      }
+      .equal-button {
+        background-color: rgb(209, 64, 48);
+        color: white;
+        border-bottom-color: rgb(140, 37, 28);
+        width: 159px;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>calculator</title>
+  </head>
+  <body>
+    <div class="all">
+      <div class="screen">0</div>
+      <div class="buttons">
+        <div>
+          <button
+            onclick="
+          calculate('7')
+        "
+          >
+            7
+          </button>
+        </div>
+        <div>
+          <button
+            onclick="
+          calculate('8')
+        "
+          >
+            8
+          </button>
+        </div>
+        <div>
+          <button
+            onclick="
+          calculate('9')
+        "
+          >
+            9
+          </button>
+        </div>
+        <div><button class="del-button">DEL</button></div>
+        <div>
+          <button
+            onclick="
+         calculate('4')
+        "
+          >
+            4
+          </button>
+        </div>
+        <div>
+          <button
+            onclick="
+          calculate('5')
+        "
+          >
+            5
+          </button>
+        </div>
+        <div>
+          <button
+            onclick="
+          calculate('6')
+        "
+          >
+            6
+          </button>
+        </div>
+        <div>
+          <button
+            onclick="
+          calculate('+')
+        "
+          >
+            +
+          </button>
+        </div>
+        <div>
+          <button
+            onclick="
+         calculate('1')
+        "
+          >
+            1
+          </button>
+        </div>
+        <div>
+          <button
+            onclick="
+          calculate('2')
+        "
+          >
+            2
+          </button>
+        </div>
+        <div>
+          <button
+            onclick="
+         calculate('3')
+        "
+          >
+            3
+          </button>
+        </div>
+        <div>
+          <button
+            onclick="
+         calculate('-')
+        "
+          >
+            -
+          </button>
+        </div>
+        <div>
+          <button onclick="calculate('.')">.</button>
+        </div>
+        <div>
+          <button
+            onclick="
+         calculate('0')
+        "
+          >
+            0
+          </button>
+        </div>
+        <div>
+          <button
+            onclick="
+         calculate('/')
+        "
+          >
+            /
+          </button>
+        </div>
+        <div>
+          <button
+            onclick="
+         calculate('*')
+        "
+          >
+            x
+          </button>
+        </div>
+      </div>
+      <div class="last-2-buttons">
+        <div>
+          <button class="reset-button" onclick="resetCalculation()">
+            RESET
+          </button>
+        </div>
+        <div>
+          <button class="equal-button" onclick="evaluateCalculation()">
+            =
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      let calculation = "";
+      function calculate(number) {
+        calculation += number;
+        document.querySelector(".screen").innerHTML = calculation;
+      }
+      function evaluateCalculation() {
+        calculation = eval(calculation);
+        document.querySelector(".screen").innerHTML = calculation;
+        calculation = "";
+      }
+      function resetCalculation() {
+        calculation = "";
+        document.querySelector(".screen").innerHTML = 0;
+      }
+    </script>
+  </body>
+</html>
